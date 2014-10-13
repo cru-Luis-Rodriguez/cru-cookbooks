@@ -3,11 +3,6 @@ define :passenger_web_app do
   deploy = params[:deploy]
   application = params[:application]
 
-  Chef::Log.debug(deploy)
-  Chef::Log.debug(application)
-  Chef::Log.debug(params)
-  Chef::Log.debug(node)
-
   if deploy['domains']
     template "#{node['apache']['dir']}/ssl/#{deploy['domains'].first}.crt" do
       cookbook 'passenger_apache2'
@@ -43,11 +38,18 @@ define :passenger_web_app do
     end
 
     # move away default virtual host so that the Rails app becomes the default virtual host
+    if platform?('ubuntu') && node[:platform_version] == '14.04'
+      source_default_site_config = "#{node[:apache][:dir]}/sites-enabled/000-default.conf"
+      target_default_site_config = "#{node[:apache][:dir]}/sites-enabled/zzz-default.conf"
+    else
+      source_default_site_config = "#{node[:apache][:dir]}/sites-enabled/000-default"
+      target_default_site_config = "#{node[:apache][:dir]}/sites-enabled/zzz-default"
+    end
     execute "mv away default virtual host" do
       action :run
-      command "mv #{node['apache']['dir']}/sites-enabled/000-default #{node['apache']['dir']}/sites-enabled/zzz-default"
+      command "mv #{source_default_site_config} #{target_default_site_config}"
       only_if do
-        File.exists?("#{node['apache']['dir']}/sites-enabled/000-default")
+        File.exists?(source_default_site_config)
       end
     end
 
@@ -63,3 +65,4 @@ define :passenger_web_app do
     end
   end
 end
+

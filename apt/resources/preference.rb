@@ -2,7 +2,11 @@
 # Cookbook Name:: apt
 # Resource:: preference
 #
+<<<<<<< HEAD
 # Copyright 2010-2011, Opscode, Inc.
+=======
+# Copyright 2010-2013, Opscode, Inc.
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +22,13 @@
 #
 
 actions :add, :remove
+<<<<<<< HEAD
 
+=======
+default_action :add if defined?(default_action) # Chef > 10.8
+
+# Needed for Chef versions < 0.10.10
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 def initialize(*args)
   super
   @action = :add

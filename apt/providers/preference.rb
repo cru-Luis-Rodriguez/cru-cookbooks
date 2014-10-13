@@ -19,12 +19,17 @@
 
 # Build preferences.d file contents
 def build_pref(package_name, pin, pin_priority)
+<<<<<<< HEAD
   preference_content = "Package: #{package_name}\nPin: #{pin}\nPin-Priority: #{pin_priority}\n"
+=======
+  "Package: #{package_name}\nPin: #{pin}\nPin-Priority: #{pin_priority}\n"
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 end
 
 action :add do
   new_resource.updated_by_last_action(false)
 
+<<<<<<< HEAD
   preference = build_pref(new_resource.glob || new_resource.package_name,
                           new_resource.pin,
                           new_resource.pin_priority)
@@ -32,14 +37,30 @@ action :add do
   preference_dir = directory "/etc/apt/preferences.d" do
     owner "root"
     group "root"
+=======
+  preference = build_pref(
+    new_resource.glob || new_resource.package_name,
+    new_resource.pin,
+    new_resource.pin_priority
+    )
+
+  preference_dir = directory '/etc/apt/preferences.d' do
+    owner 'root'
+    group 'root'
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
     mode 00755
     recursive true
     action :nothing
   end
 
   preference_file = file "/etc/apt/preferences.d/#{new_resource.name}" do
+<<<<<<< HEAD
     owner "root"
     group "root"
+=======
+    owner 'root'
+    group 'root'
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
     mode 00644
     content preference
     action :nothing

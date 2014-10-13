@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 
 # Letter case in directive names does not matter. Must be separated with colons.
 # Valid boolean values are a zero number for false, non-zero numbers for true.
 
 CacheDir: /var/cache/apt-cacher-ng
+=======
+# Letter case in directive names does not matter. Must be separated with colons.
+# Valid boolean values are a zero number for false, non-zero numbers for true.
+
+CacheDir: <%= node['apt']['cacher_dir'] %>
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 
 # set empty to disable logging
 LogDir: /var/log/apt-cacher-ng
@@ -81,13 +88,21 @@ ExTreshold: 4
 # Experimental feature for apt-listbugs: pass-through SOAP requests and
 # responses to/from bugs.debian.org. If not set, default is true if
 # ForceManaged is enabled and false otherwise.
+<<<<<<< HEAD
 # ForwardBtsSoap: 1 
+=======
+# ForwardBtsSoap: 1
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 
 # The daemon has a small cache for DNS data, to speed up resolution. The
 # expiration time of the DNS entries can be configured in seconds.
 # DnsCacheSeconds: 3600
 
+<<<<<<< HEAD
 # Don't touch the following values without good consideration! 
+=======
+# Don't touch the following values without good consideration!
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 #
 # Max. count of connection threads kept ready (for faster response in the
 # future). Should be a sane value between 0 and average number of connections,

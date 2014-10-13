@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 
 # Letter case in directive names does not matter. Must be separated with colons.
 # Valid boolean values are a zero number for false, non-zero numbers for true.
 
 CacheDir: /var/cache/apt-cacher-ng
+=======
+# Letter case in directive names does not matter. Must be separated with colons.
+# Valid boolean values are a zero number for false, non-zero numbers for true.
+
+CacheDir: <%= node['apt']['cacher_dir'] %>
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 
 # set empty to disable logging
 LogDir: /var/log/apt-cacher-ng
@@ -101,13 +108,21 @@ ExTreshold: 4
 # Experimental feature for apt-listbugs: pass-through SOAP requests and
 # responses to/from bugs.debian.org. If not set, default is true if
 # ForceManaged is enabled and false otherwise.
+<<<<<<< HEAD
 # ForwardBtsSoap: 1 
+=======
+# ForwardBtsSoap: 1
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 
 # The daemon has a small cache for DNS data, to speed up resolution. The
 # expiration time of the DNS entries can be configured in seconds.
 # DnsCacheSeconds: 3600
 
+<<<<<<< HEAD
 # Don't touch the following values without good consideration! 
+=======
+# Don't touch the following values without good consideration!
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 #
 # Max. count of connection threads kept ready (for faster response in the
 # future). Should be a sane value between 0 and average number of connections,
@@ -196,7 +211,11 @@ ExTreshold: 4
 #
 #
 # It's possible to use use apt-cacher-ng as a regular web server with limited
+<<<<<<< HEAD
 # feature set, i.e. 
+=======
+# feature set, i.e.
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 # including directory browsing and download of any file;
 # excluding sorting, mime types/encodings, CGI execution, index page
 # redirection and other funny things.
@@ -213,13 +232,21 @@ ExTreshold: 4
 # Precache a set of files referenced by specified index files. This can be used
 # to create a partial mirror usable for offline work. There are certain limits
 # and restrictions on the path specification, see manual for details. A list of
+<<<<<<< HEAD
 # (maybe) relevant index files could be retrieved via 
+=======
+# (maybe) relevant index files could be retrieved via
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 # "apt-get --print-uris update" on a client machine.
 #
 # PrecacheFor: debrep/dists/unstable/*/source/Sources* debrep/dists/unstable/*/binary-amd64/Packages*
 
 # Arbitrary set of data to append to request headers sent over the wire. Should
+<<<<<<< HEAD
 # be a well formated HTTP headers part including newlines (DOS style) which 
+=======
+# be a well formated HTTP headers part including newlines (DOS style) which
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
 # can be entered as escape sequences (\r\n).
 # RequestAppendix: X-Tracking-Choice: do-not-track\r\n
 
@@ -273,4 +300,8 @@ ExTreshold: 4
 # follow per request, 0 disables the internal redirection. If not set,
 # default value is 0 if ForceManaged is used and 5 otherwise.
 #
+<<<<<<< HEAD
 # RedirMax: 5
+=======
+# RedirMax: 5
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4

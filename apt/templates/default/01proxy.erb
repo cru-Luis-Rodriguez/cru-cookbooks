@@ -1,2 +1,8 @@
 Acquire::http::Proxy "http://<%= @proxy %>:<%= @port %>";
 Acquire::https::Proxy "DIRECT";
+<<<<<<< HEAD
+=======
+<% @bypass.each do |bypass, type| %>
+Acquire::<%= type %>::Proxy::<%= bypass %> "DIRECT";
+<% end %>
+>>>>>>> f7ce27c33876dd69c4b5fd03d890a1c8f911a5f4
