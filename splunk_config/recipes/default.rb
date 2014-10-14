@@ -48,10 +48,7 @@ bash 'change-admin-user-password-from-default' do
     if !File.exists?("#{splunk_dir}/etc/.setup_#{user}_password")
     user "root"
     cwd "#{splunk_dir}/bin"
-    code <<-EOH
-    ./splunk edit user #{user} -password #{newpass} -auth #{user}:#{pass}
-
-    EOH
+    code <<-EOH ./splunk edit user #{user} -password #{newpass} -auth #{user}:#{pass} EOH
     end
 end
 
