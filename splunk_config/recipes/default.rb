@@ -4,9 +4,9 @@
 
 
 #configure splunk
-user = node['splunk']['auth']
-pass = node['splunk']['pass']
-newpass = node['splunk']['newpass']
+s_user = node['splunk']['auth']
+s_pass = node['splunk']['pass']
+s_newpass = node['splunk']['newpass']
 splunk_dir = node['splunk']['install_path']
 
 begin
@@ -45,16 +45,16 @@ service 'splunk' do
 end
 
 bash 'change-admin-user-password-from-default' do
-    if !File.exists?("#{splunk_dir}/etc/.setup_#{user}_password")
+    if !File.exists?("#{splunk_dir}/etc/.setup_#{s_user}_password")
     user "root"
     cwd "#{splunk_dir}/bin"
     code <<-EOH
-    ./splunk edit user #{user} -password #{newpass} -auth #{user}:#{pass}
+    ./splunk edit user #{s_user} -password #{s_newpass} -auth #{s_user}:#{s_pass}
     EOH
     end
 end
 
-file "#{splunk_dir}/etc/.setup_#{user}_password" do
+file "#{splunk_dir}/etc/.setup_#{s_user}_password" do
     content 'true\n'
     owner 'root'
     group 'root'
