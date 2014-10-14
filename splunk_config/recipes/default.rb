@@ -72,11 +72,39 @@ template "#{splunk_dir}/etc/system/local/outputs.conf" do
     notifies :restart, 'service[splunk]'
 end
 
-template "#{splunk_dir}/etc/apps/search/local/inputs.conf" do
-    source 'inputs.conf.erb'
-    mode 0644
-    variables(
-    :monitor_path => node['splunk']['monitor_path']
-             )
-    notifies :restart, 'service[splunk]'
+if node['splunk']['group'] == "default"
+   template "#{splunk_dir}/etc/apps/search/local/inputs.conf" do
+       source 'inputs.conf.erb'
+       mode 0644
+       variables(
+       :monitor_path => node['splunk']['monitor_path']
+                )
+       notifies :restart, 'service[splunk]'
+   end
+end
+
+if node['splunk']['group'] == "rail_app"
+   template "#{splunk_dir}/etc/apps/search/local/inputs.conf" do
+       source 'rail_app.erb'
+       mode 0644
+       variables(
+       :monitor_path => node['splunk']['monitor_path'],
+       :monitor_path2 => node['splunk']['monitor_path2'],
+       :monitor_path3 => node['splunk']['monitor_path3']
+                )
+       notifies :restart, 'service[splunk]'
+   end
+end
+
+if node['splunk']['group'] == "wildfly"
+   template "#{splunk_dir}/etc/apps/search/local/inputs.conf" do
+       source 'wildfly.erb'
+       mode 0644
+       variables(
+       :monitor_path => node['splunk']['monitor_path'],
+       :monitor_path2 => node['splunk']['monitor_path2'],
+       :monitor_path3 => node['splunk']['monitor_path3']
+                )
+       notifies :restart, 'service[splunk]'
+   end
 end
