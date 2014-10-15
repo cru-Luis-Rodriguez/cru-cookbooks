@@ -98,12 +98,10 @@ end
 
 if node['splunk']['group'] == "wildfly"
    template "#{splunk_dir}/etc/apps/search/local/inputs.conf" do
-       source 'wildfly.erb'
+       source 'wildfly.inputs.conf.erb'
        mode 0644
        variables(
        :monitor_path => node['splunk']['monitor_path'],
-       :monitor_path2 => node['splunk']['monitor_path2'],
-       :monitor_path3 => node['splunk']['monitor_path3']
                 )
        notifies :restart, 'service[splunk]'
    end
